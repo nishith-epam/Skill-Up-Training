@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Drawing Menu</title>
+    <style type="text/css">
+        #CanvasMenu {
+            border: dotted 1px black;
+        }
+    </style>
+    <link rel="stylesheet" href="../style.css" />
+    <script>
+        window.addEventListener("load", function () {
+            var theCanvas = document.getElementById('CanvasMenu');
+            if (theCanvas && theCanvas.getContext) {
+                var ctx = theCanvas.getContext("2d");
+                if (ctx) {
+                    var elemLeft = theCanvas.offsetLeft,
+                        elemTop = theCanvas.offsetTop,
+                        isOpen = false,
+                        element = {
+                            color: 'blue',
+                            width: 100,
+                            height: 40,
+                            top: 30,
+                            left: 20
+                        };
+
+                    // event listener for click event
+                    theCanvas.addEventListener('click', function (event) {
+                        var xVal = event.pageX - elemLeft,
+                            yVal = event.pageY - elemTop;
+
+
+                        if (yVal > element.top && yVal < element.top + element.height && xVal > element.left && xVal < element.left + element.width && !isOpen) {
+                            isOpen = true;
+                            ctx.fillStyle = 'lightGray';
+                            ctx.strokeStyle = 'black';
+
+                            ctx.fillRect(element.left, element.top + 42, element.width, element.height);
+                            ctx.fillRect(element.left, element.top + 83, element.width, element.height);
+                            ctx.fillRect(element.left, element.top + 124, element.width, element.height);
+
+                            ctx.strokeRect(element.left, element.top + 42, element.width, element.height);
+                            ctx.strokeRect(element.left, element.top + 83, element.width, element.height);
+                            ctx.strokeRect(element.left, element.top + 124, element.width, element.height);
+
+                            ctx.fillStyle = 'blue';
+                            ctx.fillText("Rose", 70, 95);
+                            ctx.fillText("Lily", 70, 135);
+                            ctx.fillText("Orchid", 70, 175);
+                        }
+                        else {
+                            isOpen = false;
+                            console.log('else part called')
+                            ctx.clearRect(element.left - 1, element.top + 42, theCanvas.width, theCanvas.height);
+                        }
+
+                    }, false);
+
+
+                    ctx.fillStyle = 'lightblue';
+                    ctx.strokeStyle = 'black';
+                    ctx.font = "16px Georgia";
+
+                    ctx.fillRect(element.left, element.top, element.width, element.height);
+                    ctx.fillStyle = 'blue';
+                    ctx.textAlign = 'center';
+                    ctx.fillText("Flowers", 70, 55);
+                    ctx.strokeRect(element.left, element.top, element.width, element.height);
+
+                }
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Drawing dropdown Menu</h1>
+    <div id="content">
+        <h2>The HTML5 Canvas - click menu demo.</h2>
+        <span>Click Dropdown menu to <strong style="color: blueviolet;">toggle</strong></span>
+        <hr>
+        <canvas id="CanvasMenu" width="700" height="300">Your browser does not support canvas.</canvas>
+    </div>
+</body>
+
+</html>
