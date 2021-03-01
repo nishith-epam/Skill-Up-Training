@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-10" style="margin:10px;">
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Choose your
+                    destination</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <ng-container *ngTemplateOutlet="recursiveMenu; context:{ $implicit: customDropdownItems }">
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4" style="margin:10px;" *ngIf="selectedItemValue">
+          You have selected: {{selectedItemValue }}
+        </div>
+    </div>
+</div>
+
+<ng-template #recursiveMenu let-customDropdownItems>
+    <div *ngFor="let customItem of customDropdownItems">
+
+        <div *ngIf="customItem.items" ngbDropdown>
+            <button class="btn " ngbDropdownToggle>{{ customItem.name
+                }}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <ng-container *ngTemplateOutlet="recursiveMenu; context:{ $implicit: customItem.items }">
+                </ng-container>
+            </div>
+        </div>
+        <div *ngIf="!customItem.items" style="background-color: lightblue;">
+            <button ngbDropdownItem id="dropdownBasic1" [value]='customItem.name'
+                (click)="selectedItem(customItem.name)">{{ customItem.name
+                }}</button>
+
+        </div>
+    </div>
+
+</ng-template>

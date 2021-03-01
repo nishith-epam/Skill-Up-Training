@@ -1,0 +1,36 @@
+<div style="width: 550px;float:left;">
+  <a>
+    <h1>Building Reusable Form 1</h1>
+  </a>
+  <form [formGroup]="signupForm" (ngSubmit)="submit()">
+    <app-profile-form formControlName="profile"></app-profile-form>
+    <app-password-form formControlName="password"></app-password-form>
+    <button type="button" (click)="resetForm()">Reset</button>
+  </form>
+
+  <p>
+    Form is {{signupForm.valid ? 'Valid' : 'Invalid'}}
+  </p>
+
+  <pre>
+{{signupForm.value | json}}
+</pre>
+</div>
+
+<div style="width: 550px;float:right;">
+  <a>
+    <h1>Building Reusable Form 2</h1>
+  </a>
+  <form [formGroup]="signupFormTwo" (ngSubmit)="submitTwo()">
+    <app-profile-form formControlName="profileTwo"></app-profile-form>
+    <button type="button" (click)="resetFormTwo()">Reset</button>
+  </form>
+
+  <p>
+    FormTwo is {{signupFormTwo.valid ? 'Valid' : 'Invalid'}}
+  </p>
+
+  <pre>
+{{signupFormTwo.value | json}}
+</pre>
+</div>
