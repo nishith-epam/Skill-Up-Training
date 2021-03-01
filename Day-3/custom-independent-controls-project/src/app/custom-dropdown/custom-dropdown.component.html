@@ -2,10 +2,9 @@
     <div class="row">
         <div class="col-xs-10" style="margin:10px;">
             <div ngbDropdown class="d-inline-block">
-                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Choose your
-                    destination</button>
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{ customDropdownItems.title}}</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <ng-container *ngTemplateOutlet="recursiveMenu; context:{ $implicit: customDropdownItems }">
+                    <ng-container *ngTemplateOutlet="recursiveMenu; context:{ $implicit: dropDownItems }">
                     </ng-container>
                 </div>
             </div>
@@ -18,11 +17,11 @@
     </div>
 </div>
 
-<ng-template #recursiveMenu let-customDropdownItems>
-    <div *ngFor="let customItem of customDropdownItems">
+<ng-template #recursiveMenu let-dropDownItems>
+    <div *ngFor="let customItem of dropDownItems">
 
         <div *ngIf="customItem.items" ngbDropdown>
-            <button class="btn " ngbDropdownToggle>{{ customItem.name
+            <button class="btn" ngbDropdownToggle>{{ customItem.name
                 }}</button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <ng-container *ngTemplateOutlet="recursiveMenu; context:{ $implicit: customItem.items }">

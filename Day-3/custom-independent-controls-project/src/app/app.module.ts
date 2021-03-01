@@ -11,6 +11,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [BrowserModule, ReactiveFormsModule, NgbModule],
   declarations: [AppComponent, PasswordFormComponent, ProfileFormComponent, CustomDropdownComponent],
-  bootstrap: [CustomDropdownComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
