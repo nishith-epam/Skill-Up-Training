@@ -14,14 +14,6 @@ export class AppComponent {
   sub3: any;
 
   constructor() {
-    // code for checking basic of and subscribe method.
-
-
-    this.callOfFunction();
-    this.callErrorFunction();
-    this.callTapFunction();
-    this.callShareReplayFunction();
-    this.callPipeFunction();
 
   }
 
@@ -76,7 +68,9 @@ export class AppComponent {
       tap(ev => console.log(ev)),
       map(ev => ev['clientX']),
     );
-    positions.subscribe(x => console.log(x));
+    const sub = positions.subscribe(x => console.log(x));
+
+    setTimeout(() => sub.unsubscribe(), 1000);
   }
 
   callErrorFunction() {
