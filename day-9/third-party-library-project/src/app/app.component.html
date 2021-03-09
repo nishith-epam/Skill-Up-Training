@@ -1,0 +1,32 @@
+<div class="container">
+  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+    <li ngbNavItem>
+      <a ngbNavLink>First</a>
+      <ng-template ngbNavContent>
+        <h3 style="margin-top: 20px;">First Content</h3>
+      </ng-template>
+    </li>
+    <li ngbNavItem>
+      <a ngbNavLink>Second</a>
+      <ng-template ngbNavContent>
+        <p style="margin-top: 20px;">
+          <button type="button" class="btn btn-outline-primary" (click)="collapse.toggle()"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            Toggle
+          </button>
+        </p>
+        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+          <div class="card">
+            <div class="card-body">
+              You can collapse this card by clicking Toggle
+            </div>
+          </div>
+        </div>
+
+      </ng-template>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav"></div>
+
+
+</div>
